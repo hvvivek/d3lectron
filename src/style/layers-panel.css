@@ -1,0 +1,62 @@
+#create-layers
+{
+    width: 98%;
+    margin-left: 1%;
+    background-color: #222222;
+    height: 30em;
+    display: none;
+    position: relative;
+}
+
+#create-layers .footer
+{
+    height: 2em;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    border-top: 1px solid #353535;
+}
+
+#create-layers .footer .add-btn
+{
+    height: 100%;
+    width: 2em;
+    float: right;
+    background-color: #222222;
+    font-size: 1.2em;
+    color: white;
+    border: none;
+    padding: 0px;
+    
+}
+
+#create-layers .layers>ul
+{
+    list-style: none;
+    padding: 0px
+}
+
+#create-layers .layers>ul>li
+{
+    list-style: none;
+    padding: 5px 1em 5px 1em;
+    color: #aaaaaa;
+    cursor: pointer;
+}
+
+#create-layers .layers>ul>li:hover
+{
+    background-color: #333333;
+    /* list-style: none;
+    padding: 5px 1em 5px 1em; */
+    color: white;
+    
+}
+
+#create-layers .layers>ul>li.active
+{
+    background-color: #333333;
+    /* list-style: none;
+    padding: 5px 1em 5px 1em; */
+    color: white;
+}

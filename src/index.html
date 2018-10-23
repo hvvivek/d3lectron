@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/fonts/helvetica.css">
+  <link rel="stylesheet" href="style/base.css">
+  <link rel="stylesheet" href="style/content.css">
+  <link rel="stylesheet" href="style/data-panel.css">
+  <link rel="stylesheet" href="style/layers-panel.css">
+  <link rel="stylesheet" href="style/canvas.css">
+
+</head>
+<body style="overflow: hidden; background-color: rgba(0,0,0,0); margin: 0" >
+  <div class="full-width">
+      <nav id="left-sidebar">
+            <ul id="icon-tabs">
+                <li class="active" panel-id="files-panel">
+                    <img class="img-fluid" src="assets/files.png" alt="" srcset="">
+                </li>
+                <li panel-id="data-panel">
+                  <img class="img-fluid" src="assets/data.png" alt="" srcset="">
+                </li>
+                <li panel-id="layers-panel">
+                  <img class="img-fluid" src="assets/layers.png" alt="" srcset="">
+                </li>
+              </ul>
+              
+              <div id="panels">
+                  <div class="panel active" id="files-panel">
+                      <p class="full-width panel-title">EXPLORER</p>
+                      <button id="load-folder">Open Folder</button>
+                      <input type="file" webkitdirectory directory multiple id="load-folder-input">
+
+                      <div class="content">
+                        <p class="full-width dropdown-title" dropdown-id="data-sources"><img class="icon" src="./assets/side-close.png" alt="">DATA ASSETS</p>
+                        <div class="full-width dropdown-target" id="data-sources">
+                          <ul>
+                            
+                          </ul>
+                        </div>
+
+                        <p class="full-width dropdown-title" dropdown-id="other-files"><img class="icon" src="./assets/side-close.png" alt="">OTHER FILES</p>
+                        <div class="full-width dropdown-target" id="other-files">
+                          <ul>
+                            
+                          </ul>
+                        </div>
+
+                      </div>
+                  </div>
+                  
+                  <div class="panel" id="data-panel">
+                      <p class="full-width panel-title">DATA</p>
+                      
+                      <div class="content">
+                        <p class="full-width dropdown-title" dropdown-id="create-data"><img class="icon" src="./assets/side-close.png" alt="">DATA SOURCES</p>
+                        <div id="create-data">
+                          <div class="data-sources">
+                            <ul>
+
+                            </ul>
+                          </div>
+
+                          <div class="footer">
+                            <button class="add-btn"><p>+</p></button>
+                          </div>
+                        </div>
+                        
+                      </div>
+                  </div>
+
+                  <div class="panel" id="layers-panel">
+                      <p class="full-width panel-title">WORKSHEET</p>
+
+                      <div class="content">
+                          <p class="full-width dropdown-title" dropdown-id="create-layers"><img class="icon" src="./assets/side-close.png" alt="">LAYERS</p>
+                          <div id="create-layers">
+                            <div class="layers">
+                              <ul>
+  
+                              </ul>
+                            </div>
+  
+                            <div class="footer">
+                              <button class="add-btn"><p>+</p></button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                  </div>
+              </div>
+              
+        
+      </nav>
+      
+      <div id="content">
+        
+      </div>
+      <nav id="right-sidebar">
+      </nav>
+
+  </div>
+  
+  <!-- <div id="App"></div> -->
+
+</body>
+
+<!-- <script type="text/jsx">
+  import React from 'react';
+  import ReactDOM from 'react-dom';
+  import {AppContainer} from 'react-hot-loader';
+
+  const render = () => {
+    const App = require('./app').default;
+    ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('App'));
+  }
+
+  render();
+  if (module.hot) {
+    module.hot.accept(render);
+  }
+</script> -->
+
+<script src="js/modules.js"></script>
+<script src="js/workspace-file.js"></script>
+<script src="js/data-sources.js"></script>
+<script src="js/layers.js"></script>
+
+<script src="js/left-sidebar.js"></script>
+<script src="js/files-panel.js"></script>
+<script src="js/data-panel.js"></script>
+<script src="js/layers-panel.js"></script>
+
+</html>
