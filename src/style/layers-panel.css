@@ -60,3 +60,57 @@
     padding: 5px 1em 5px 1em; */
     color: white;
 }
+
+#Extensions
+{
+    background-color: #333333;
+    width: 80%;
+    margin-left: 10%;
+    /* margin-top: 0.5em; */
+    height: 3em;
+    border-radius: 5px;
+}
+
+#Extensions:hover
+{
+    background-color: #444444;
+    border: 1px solid #888888;
+
+}
+
+
+#Extensions select
+{
+    background-color: transparent;
+    color: white;
+    font-size: 1em;
+    border: none;
+    width: 80%;
+    margin-left: 10%;
+    height: 2em;
+    margin-top: 0.4em;
+
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 0px;
+}
+
+#Extensions select:focus
+{
+    outline: none;
+}
+
+#LayerView p.panel-title
+{
+    margin-left: 10%;
+    color: #aaaaaa;
+    font-family: 'Helvetica Bold';
+    /* font-weight: 600; */
+    margin-top: 1em;
+    margin-bottom: 0.35em;
+
+}

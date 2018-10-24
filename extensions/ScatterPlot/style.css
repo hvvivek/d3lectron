@@ -1,0 +1,80 @@
+#config
+{
+    padding-top: 1em;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#config input
+{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 0.25em;
+    width: 100%;
+    /* margin-left: 5%; */
+    border:none;
+}
+
+#config p
+{
+    color: #aaaaaa;
+    margin-bottom: 0.25em;
+}
+
+#config .two-col p
+{
+    width: 50%;
+    /* margin-left: 5%;
+    margin-right: 5%; */
+    float: left;
+}
+
+#config .two-col input
+{
+    width: 46%;
+    margin-left: 0%;
+    margin-right: 4%;
+    float: left;
+}
+
+#config .two-col
+{
+    border-top: 1px dotted #888888;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+#config .build
+{
+    background-color: #2177bd;
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    padding: 0.25em;
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    /* font-family: 'Helvetica Bold' */
+}
+
+#config .build:hover, #config .build:active
+{
+    background-color: #1d69a7;
+
+    /* color: white;
+    width: 80%;
+    margin-left: 10%;
+    padding: 0.5em;
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    border-radius: 5px; */
+}
+
+#config .search-box
+{
+    display: none;
+    position: absolute;
+}
