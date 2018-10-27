@@ -38,7 +38,8 @@
         <p>Color</p>
         <p>Radius</p>
         <div class="autocomplete">
-            <input type="text" value="" name="color" placeholder="Ex. #843b18, rgba(88, 89, 72, 0.2), black " >
+            <input type="text" value="" name="color" placeholder="Ex. #843b18, rgba(88, 89, 72, 0.2), black " oninput="ScatterPlotFunctions.checkColor(this)">
+            <div class="color-box"></div>
         </div>
         <div class="autocomplete">
             <input type="text" value="" name="radius" placeholder="Ex. 10, 5px, 1em, 2vw ">

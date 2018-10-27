@@ -108,3 +108,18 @@
     padding: 0.3em 1em;
 }
 
+#config input[name=color]
+{
+    width: 80%;
+    float: left;
+}
+
+.color-box
+{
+    /* position: absolute; */
+    width: 20%;
+    height: 2em;
+    background-color: red;
+    float: right;
+    /* top: -2em; */
+}

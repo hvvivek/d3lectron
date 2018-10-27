@@ -135,3 +135,18 @@ ScatterPlotFunctions.autocompleteFill = function(a)
     $($(a.parentNode.parentNode).attr("data-value-fill")).val($(a).html())
 }
 
+ScatterPlotFunctions.checkColor = function(a)
+{
+    var colorString = $(a).val()
+    if(isColor(colorString))
+    {
+        $(a.parentNode).find(".color-box")
+                        .attr("style", "background: " + colorString)
+    }
+    else
+    {
+        $(a.parentNode).find(".color-box")
+                        .attr("style", "background: url('./assets/warning.png') no-repeat; background-size: contain")
+    }
+}
+
