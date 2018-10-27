@@ -129,3 +129,10 @@
     margin-bottom: 0.35em;
 
 }
+
+#create-layers .layers>ul>li>img
+{
+    height: 1.3em;
+    width: auto;
+    margin-right: 1.5em;
+}

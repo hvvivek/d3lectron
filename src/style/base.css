@@ -194,3 +194,8 @@ input:focus, button:focus
 {
     display: block;
 }
+
+.hidden
+{
+    opacity: 0
+}

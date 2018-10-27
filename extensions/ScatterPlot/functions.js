@@ -18,7 +18,7 @@ ScatterPlotFunctions.getView = function(full_path)
 ScatterPlotFunctions.BuildScatterPlot = function(a, parentId)
 {
     var config = {}
-    config.parent = workspace.layers[$(getActiveLayer()).html()]
+    config.parent = workspace.layers[$(getActiveLayer()).attr("data-layer-id")]
     config.width = $("#canvas").width()
     config.height = $("#canvas").height()
     config.left = $(parentId + " input[name=left]").val()
@@ -31,19 +31,20 @@ ScatterPlotFunctions.BuildScatterPlot = function(a, parentId)
     config.color = $(parentId + " input[name=color]").val()
     config.radius = $(parentId + " input[name=radius]").val()
 
-    var id = $(this).attr("data-layer-link")
+    var id = $(a).attr("data-layer-link")
     if(!id)
     {
         var plot = new ScatterPlot(config)
         plot.build()
         id = randomString(5, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        workspace.layers[$(getActiveLayer()).html()].addTemplate(id, plot)
-        $(this).attr("data-layer-link", id)
+        workspace.layers[$(getActiveLayer()).attr("data-layer-id")].addTemplate(id, plot)
+        $(a).attr("data-layer-link", id)
     }
     else
     {
         console.log("Rebuilding")
-        var plot = workspace.layers[$(getActiveLayer()).html()].templates[id]
+        console.log($(getActiveLayer()).attr("data-layer-id"))
+        var plot = workspace.layers[$(getActiveLayer()).attr("data-layer-id")].templates[id]
         plot.setConfig(config)
         plot.build()
     }
