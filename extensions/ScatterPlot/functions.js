@@ -15,10 +15,9 @@ ScatterPlotFunctions.getView = function(full_path)
     // return 
 }
 
-ScatterPlotFunctions.BuildScatterPlot = function(parentId)
+ScatterPlotFunctions.BuildScatterPlot = function(a, parentId)
 {
     var config = {}
-    // config.layer = 
     config.parent = workspace.layers[$(getActiveLayer()).html()]
     config.width = $("#canvas").width()
     config.height = $("#canvas").height()
@@ -32,9 +31,23 @@ ScatterPlotFunctions.BuildScatterPlot = function(parentId)
     config.color = $(parentId + " input[name=color]").val()
     config.radius = $(parentId + " input[name=radius]").val()
 
-    var plot = new ScatterPlot(config)
-    plot.build()
-    console.log(plot.getViz())
+    var id = $(this).attr("data-layer-link")
+    if(!id)
+    {
+        var plot = new ScatterPlot(config)
+        plot.build()
+        id = randomString(5, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        workspace.layers[$(getActiveLayer()).html()].addTemplate(id, plot)
+        $(this).attr("data-layer-link", id)
+    }
+    else
+    {
+        console.log("Rebuilding")
+        var plot = workspace.layers[$(getActiveLayer()).html()].templates[id]
+        plot.setConfig(config)
+        plot.build()
+    }
+    // console.log(plot.getViz())
 
     // console.log(config)
 }

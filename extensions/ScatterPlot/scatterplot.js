@@ -3,6 +3,12 @@ class ScatterPlot
     constructor(config)
     {
         console.log(config)
+        this.setConfig(config)
+
+    }
+
+    setConfig(config)
+    {
         this.config     = config
         this.parent     = this.config.parent
         this.xFeature   = this.config.x
@@ -20,6 +26,7 @@ class ScatterPlot
         this.userSetRadius = false
         this.userSetFill = false
 
+        console.log(this.color + " " + isColor(this.color))
         if(isColor(this.color))
         {
             this.userSetFill = true
@@ -39,7 +46,6 @@ class ScatterPlot
         {
             this.top = 0
         }
-
     }
 
     init()
@@ -49,7 +55,10 @@ class ScatterPlot
 
     build()
     {
+        // $("#" + this.parent.getSVGGroup()).html("")
+        console.log(this.parent.getSVGGroup())
         var plot = d3.select("#" + this.parent.getSVGGroup())
+        console.log(plot)
         var data = this.dataSource.data
         var xFeature = this.xFeature
         var yFeature = this.yFeature
@@ -70,23 +79,37 @@ class ScatterPlot
         console.log(this.xScale(20))
         console.log(this.yScale(20))
 
-        plot.selectAll("circle")
-            .data(this.dataSource.data)
-            .enter()
+        var scatter = plot.selectAll("circle")
+                            
+
+        console.log(scatter)
+        scatter.data(this.dataSource.data)
+                .enter()
                 .append("circle")
                 .attr("r", this.getRadiusFunction())
                 .attr("cx", this.getCxFunction())
                 .attr("cy", this.getCyFunction())
                 .attr("fill", this.getFillFunction())
+                    
+        
+        scatter
+            .attr("r", this.getRadiusFunction())
+            .attr("cx", this.getCxFunction())
+            .attr("cy", this.getCyFunction())
+            .attr("fill", this.getFillFunction())
+
+        scatter.exit().remove()
+
         this.plot = plot
+
     }
 
     getViz()
     {
-        if(!this.plot)
-        {
-            this.build
-        }
+        // if(!this.plot)
+        // {
+            this.build()
+        // }
 
         return this.plot
     }
@@ -99,6 +122,7 @@ class ScatterPlot
         }
         else
         {
+            console.log(this.radius)
             return this.radius
         }
     }
@@ -107,7 +131,7 @@ class ScatterPlot
     {
         var xScale = this.xScale
         var xFeature = this.xFeature
-
+        // console.log(xFeature)
         return function(d){return xScale(parseInt(d[xFeature]))}
     }
 
@@ -123,10 +147,12 @@ class ScatterPlot
     {
         if(!this.userSetFill)
         {
+            console.log(this.color)
             return "red"
         }
         else
         {
+            console.log(this.color)
             return this.color
         }
     }

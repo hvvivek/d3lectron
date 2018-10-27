@@ -1,8 +1,18 @@
 var colorCheckString = /^(?:#(?:[A-Fa-f0-9]{3}){1,2}|(?:rgb[(](?:\s*0*(?:\d\d?(?:\.\d+)?(?:\s*%)?|\.\d+\s*%|100(?:\.0*)?\s*%|(?:1\d\d|2[0-4]\d|25[0-5])(?:\.\d+)?)\s*(?:,(?![)])|(?=[)]))){3}|hsl[(]\s*0*(?:[12]?\d{1,2}|3(?:[0-5]\d|60))\s*(?:\s*,\s*0*(?:\d\d?(?:\.\d+)?\s*%|\.\d+\s*%|100(?:\.0*)?\s*%)){2}\s*|(?:rgba[(](?:\s*0*(?:\d\d?(?:\.\d+)?(?:\s*%)?|\.\d+\s*%|100(?:\.0*)?\s*%|(?:1\d\d|2[0-4]\d|25[0-5])(?:\.\d+)?)\s*,){3}|hsla[(]\s*0*(?:[12]?\d{1,2}|3(?:[0-5]\d|60))\s*(?:\s*,\s*0*(?:\d\d?(?:\.\d+)?\s*%|\.\d+\s*%|100(?:\.0*)?\s*%)){2}\s*,)\s*0*(?:\.\d+|1(?:\.0*)?)\s*)[)])$/
 
-var isColor = function(str)
-{
-    return colorCheckString.test(str)
+function isColor(stringToTest) {
+    //Alter the following conditions according to your need.
+    if (stringToTest === "") { return false; }
+    if (stringToTest === "inherit") { return false; }
+    if (stringToTest === "transparent") { return false; }
+
+    var image = document.createElement("img");
+    image.style.color = "rgb(0, 0, 0)";
+    image.style.color = stringToTest;
+    if (image.style.color !== "rgb(0, 0, 0)") { return true; }
+    image.style.color = "rgb(255, 255, 255)";
+    image.style.color = stringToTest;
+    return image.style.color !== "rgb(255, 255, 255)";
 }
 
 var isValidLength = function(value)
@@ -15,4 +25,10 @@ var isValidLength = function(value)
     // if (_old != _new), the rule has been successfully applied
     // console[valid?"log":"warn"]( `${property}:${value} is ${valid?"":"not"} valid!` );
     return valid
+}
+
+var randomString = function(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
 }

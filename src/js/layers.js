@@ -18,18 +18,23 @@ class Layer
 
     getSVGGroup()
     {
-        this.identifier = this.randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
         if(!this.SVGgroup)
         {
+            this.identifier = randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
             this.SVGgroup = d3.select("#canvas").append("g").attr("id", this.identifier)
         }
         
         return this.identifier
     }
 
-    randomString(length, chars) {
-        var result = '';
-        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-        return result;
+    
+
+    addTemplate(id, object)
+    {
+        if(!this.templates)
+        {
+            this.templates = {}
+        }
+        this.templates[id] = object
     }
 }
