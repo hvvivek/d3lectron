@@ -7,16 +7,13 @@ class Layer
 
     getView()
     {
-        if(this.vizType)
-        {
-
-        }
-        else
+        if(!this.vizType)
         {
             var layerView = $("<div id='LayerView'></div>")
             layerView.append("<p class='panel-title'>Select Template:</p><div id='Extensions'><select></select><p>&#8249;</p></div><div id='ExtensionView'></div>")
+            this.vizType = layerView
         }
-        return layerView
+        return this.vizType
     }
 
     getSVGGroup()

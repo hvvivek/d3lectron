@@ -49,6 +49,24 @@
     color: white;
     border: none;
     padding: 0px;
+    background: url("../assets/add.png") no-repeat center;
+    /* padding-bottom: 0.5em; */
+    background-size: contain;
+}
+
+#create-data .footer .automate-btn
+{
+    height: 100%;
+    width: 2em;
+    float: right;
+    background-color: #222222;
+    font-size: 1.2em;
+    color: white;
+    border: none;
+    padding: 0px;
+    background: url("../assets/automate.png") no-repeat center;
+    /* padding-bottom: 0.5em; */
+    background-size: contain;
     
 }
 
