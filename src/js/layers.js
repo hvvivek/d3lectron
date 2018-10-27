@@ -21,7 +21,7 @@ class Layer
 
     getSVGGroup()
     {
-        this.identifier = this.randomString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        this.identifier = this.randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
         if(!this.SVGgroup)
         {
             this.SVGgroup = d3.select("#canvas").append("g").attr("id", this.identifier)

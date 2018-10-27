@@ -1,21 +1,30 @@
 <div id="config">
-    <p>Choose Data Source</p>
+    <p>Choose Data Source*</p>
     <input type="hidden" id="Layer" value="">
     <input type="text" value="" name="data" placeholder="Search">
 
     <div class="two-col">
-        <p>X-axis</p>
-        <p>Y-axis</p>
+        <p>X-axis*</p>
+        <p>Y-axis*</p>
         <input type="text" value="" name="x" placeholder="Search">
         <input type="text" value="" name="y" placeholder="Search">
     </div>
     
     <div class="two-col">
-        <p>Width</p>
-        <p>Height</p>
-        <input type="text" value="" name="width" placeholder="800">
-        <input type="text" value="" name="height" placeholder="200">
+        <p>Margin Left</p>
+        <p>Margin Top</p>
+        <input type="text" value="" name="left" placeholder="800">
+        <input type="text" value="" name="top" placeholder="200">
+        <p>Margin Right</p>
+        <p>Margin Bottom</p>
+        <input type="text" value="" name="right" placeholder="800">
+        <input type="text" value="" name="bottom" placeholder="200">
     </div>
-
+    <div class="two-col">
+        <p>Color</p>
+        <p>Radius</p>
+        <input type="text" value="" name="color" placeholder="Ex. #843b18, rgba(88, 89, 72, 0.2), black ">
+        <input type="text" value="" name="radius" placeholder="Ex. 10, 5px, 1em, 2vw ">
+    </div>
     <button class="build" onclick="ScatterPlotFunctions.BuildScatterPlot('#config')">Build</button>
 </div>

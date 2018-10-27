@@ -10,9 +10,36 @@ class ScatterPlot
         this.dataSource = workspace.data_sources[this.config.data]
         this.width      = this.config.width
         this.height     = this.config.height
-
+        this.left      = parseInt(this.config.left)
+        this.top     = parseInt(this.config.top)
+        this.right      = parseInt(this.config.right)
+        this.bottom     = parseInt(this.config.bottom)
+        this.color      = this.config.color
+        this.radius      = this.config.radius
+        
         this.userSetRadius = false
         this.userSetFill = false
+
+        if(isColor(this.color))
+        {
+            this.userSetFill = true
+        }
+
+        if(isValidLength(this.radius))
+        {
+            this.userSetRadius = true
+        }
+
+        if(!isValidLength(this.left))
+        {
+            this.left = 0
+        }
+
+        if(!isValidLength(this.top))
+        {
+            this.top = 0
+        }
+
     }
 
     init()
@@ -36,8 +63,10 @@ class ScatterPlot
 
         console.log(minx + "-" + maxx + "-" + miny + "-" + maxy)
 
-        this.xScale = d3.scaleLinear().domain([minx, maxx]).range([0, this.width])
-        this.yScale = d3.scaleLinear().domain([miny, maxy]).range([this.height, 0])
+        console.log(parseInt(this.top))
+        console.log(parseInt(this.left))
+        this.xScale = d3.scaleLinear().domain([minx, maxx]).range([this.left, this.width - this.right])
+        this.yScale = d3.scaleLinear().domain([miny, maxy]).range([this.height - this.bottom, this.top])
         
         plot.selectAll("circle")
             .data(this.dataSource.data)
@@ -68,7 +97,7 @@ class ScatterPlot
         }
         else
         {
-            return "1px"
+            return this.radius
         }
     }
 
@@ -96,7 +125,7 @@ class ScatterPlot
         }
         else
         {
-            return "red"
+            return this.color
         }
     }
 }
