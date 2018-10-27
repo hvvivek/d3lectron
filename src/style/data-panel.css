@@ -82,12 +82,24 @@
     position: relative;
 }
 
+#automate-data-form
+{
+    height: 60%;
+    width: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+    background-color: #222222;
+    color: white;
+    padding: 1.5em;
+    position: relative;
+}
+
 #add-data-form .data-name-label
 {
     
 }
 
-#add-data-form .data-name-input
+#add-data-form .data-name-input, #automate-data-form .data-name-input
 {
     background-color: transparent;
     font-size: 2em;
@@ -108,7 +120,7 @@
     /* color: white; */
 }
 
-#add-data-form .data-form-create
+#add-data-form .data-form-create, #automate-data-form .data-form-create
 {
     padding: 5px;
     padding-top: 3px;
@@ -122,6 +134,38 @@
     position: absolute;
     right: 1em;
     bottom: 5%;
+}
+
+#automate-data-form input[type=checkbox]
+{
+    float:left;
+    height: 1em;
+    font-size: 2em;
+    margin-right: 0.5em;
+}
+
+#automate-data-form h4
+{
+    /* padding-left: 0.5em; */
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+#automate-data-form ul
+{
+    padding: 1em;
+    width: 50%;
+    background-color: #202020;
+    color: #aaaaaa;
+}
+
+#automate-data-form label
+{
+    float:left;
+    height: 2em;
+    font-size: 1em;
+    /* margin-right: 1em; */
+    padding-top: 0.25em;
 }
 
 #add-data-form .data-files

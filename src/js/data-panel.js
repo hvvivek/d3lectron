@@ -12,6 +12,82 @@ $("#create-data .add-btn").on("click", function(){
     populateSources(workspace)
 })
 
+var selectAll = function(a, selector)
+{
+    
+    var parent = $(selector + " input[type=checkbox]").get()
+    for(var i=0; i<parent.length; i++)
+    {
+        if(!$(parent[i]).hasClass("select_all"))
+        {
+            console.log($(a))
+            if($(a)[0].checked)
+            {
+                console.log("checking")
+                $(parent[i]).prop('checked', true);
+            }
+            else
+            {
+                console.log("unchecking")
+                $(parent[i]).prop('checked', false);
+            }
+        }
+    }
+}
+
+$("#create-data .automate-btn").on("click", function(){
+    console.log("Automating adding new data")
+    $("#content").html("")
+    $("<div id='automate-data-form'></div>").appendTo("#content")
+    $("<h4 class='data-name-label'>Select data files to read:</h4>").appendTo("#automate-data-form")
+    $("<br><div class='data-files'><ul></ul></div>").appendTo("#automate-data-form")
+    $("<button class='data-form-create'>Add All</button>").appendTo("#automate-data-form")
+
+    var data_files = workspace.files.filter(function(d){return dataTypes.indexOf(d.type) >= 0})
+    d3.select("#automate-data-form .data-files>ul")
+    .selectAll("li")
+    .data(data_files)
+    .enter()
+        .append("li")
+        .attr("data-workspace-file", function(d){return d.rString})
+        .html(function(d){return '<div><input type="checkbox" name="'+d.name+'" value="'+d.rString+'" /><label>'+d.name+'</label></div>'})
+
+    $("<li><div><input type='checkbox' class='select_all' onClick='selectAll(this, \"#automate-data-form\")' name='select_all' value='select_all' /><label>Select All</label></div></li>").prependTo("#automate-data-form .data-files>ul")
+    $("#automate-data-form .data-form-create").on("click", function()
+    {
+        var selectedFiles = []
+        var selectedNames = []
+        var options = $("#automate-data-form input[type=checkbox]").get()
+        for(var i=0; i<options.length; i++)
+        {
+            if(!$(options[i]).hasClass("selectAll"))
+            {
+                if($(options[i])[0].checked)
+                {
+                    selectedFiles.push($(options[i]).attr("value"))
+                    selectedNames.push($(options[i]).attr("name"))
+
+                }
+            }
+        }
+        for(var i=0; i<selectedFiles.length; i++)
+        {
+            var rString = selectedFiles[i]
+            var name = selectedNames[i].split(".")[0]
+            var linkedFile = workspace.files.filter(function(d){return d.rString == rString})
+            if(linkedFile.length > 0)
+            {
+                linkedFile = linkedFile[0]
+                if(!workspace.data_sources)workspace.data_sources = {}
+                workspace.data_sources[name] = new DataSource(name, linkedFile)
+                updateDataPanel()
+            }
+        }
+        $("#automate-data-form").remove()
+
+    })
+})
+
 var populateSources = function(workspace)
 {
     var data_files = workspace.files.filter(function(d){return dataTypes.indexOf(d.type) >= 0})
@@ -52,18 +128,8 @@ var populateSources = function(workspace)
                                 
                                     feature_list.exit().remove()
                                 }
-                                // d3.keys(data[0]);
-                                // feature_list.remove()
-                                // feature_list
-                                //     .data(d3.keys(data[0]))
-                                //     .exit().remove()
-
-                                
-                                
                             }
                         )
-                        // $("#content").html("")
-                        // linkedFile.getContent().appendTo("#content")
                     }
                 })
     
@@ -73,6 +139,8 @@ var populateSources = function(workspace)
         $("#add-data-form .data-files>ul>li").removeClass("active")
         $(this).addClass("active")
     })
+
+    
 
     $("#add-data-form .data-form-create").on("click", function()
     {
