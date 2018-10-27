@@ -67,7 +67,9 @@ class ScatterPlot
         console.log(parseInt(this.left))
         this.xScale = d3.scaleLinear().domain([minx, maxx]).range([this.left, this.width - this.right])
         this.yScale = d3.scaleLinear().domain([miny, maxy]).range([this.height - this.bottom, this.top])
-        
+        console.log(this.xScale(20))
+        console.log(this.yScale(20))
+
         plot.selectAll("circle")
             .data(this.dataSource.data)
             .enter()

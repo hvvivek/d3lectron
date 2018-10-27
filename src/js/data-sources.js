@@ -9,7 +9,8 @@ class DataSource
         d3[this.type](this.full_path).then(
             function(d)
             {
-                dataSource.data = d 
+                dataSource.data = d
+                dataSource.features = d3.keys(d[0])
             }
         )
     }

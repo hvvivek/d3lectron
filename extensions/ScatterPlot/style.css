@@ -5,6 +5,11 @@
     margin-left: 10%;
 }
 
+#config .autocomplete
+{
+    width: 100%;
+}
+
 #config input
 {
     background-color: rgba(0, 0, 0, 0.1);
@@ -29,7 +34,7 @@
     float: left;
 }
 
-#config .two-col input
+#config .two-col .autocomplete
 {
     width: 46%;
     margin-left: 0%;
@@ -78,3 +83,28 @@
     display: none;
     position: absolute;
 }
+
+#hidden-search-help
+{
+    /* display: none; */
+    /* position: absolute; */
+    /* min-height: 10px; */
+    background-color: white;
+    width: 100%;
+}
+
+#hidden-search-help ul
+{
+    background-color: white;
+    padding: 0px;
+    position: absolute;
+    min-width: 10em;
+    /* width: 100%; */
+}
+
+#hidden-search-help li
+{
+    cursor: pointer;
+    padding: 0.3em 1em;
+}
+

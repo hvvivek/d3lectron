@@ -5,6 +5,10 @@ $("#icon-tabs li").on("click", function(){
         $(this).toggleClass("active")
         $("#panels .panel.active").toggleClass("active")
         $("#" + this.getAttribute("panel-id")).toggleClass("active")
+        // if(!$("#" + $("#" + this.getAttribute("panel-id") + " .dropdown-title").attr("dropdown-id")).hasClass("active"))
+        // {
+        //     $("#" + this.getAttribute("panel-id") + " .dropdown-title").click()
+        // }
 
         switch(this.getAttribute("panel-id"))
         {
@@ -17,6 +21,8 @@ $("#icon-tabs li").on("click", function(){
                         .attr("width", "80%")
                         .attr("height", "45%")
                 }
+                if(!$("#create-layers .layers>ul>li")[0])$("#create-layers .add-btn").click()
+
                 break;
             default:
                 break;

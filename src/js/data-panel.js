@@ -23,6 +23,7 @@ var populateSources = function(workspace)
                 .attr("data-workspace-file", function(d){return d.rString})
                 .html(function(d){return d.name})
                 .on("click", function(d){
+                    $(".data-name-input").val(d.name.split(".")[0])
                     var rString = d.rString
                     var linkedFile = workspace.files.filter(function(d){return d.rString == rString})
                     if(linkedFile.length > 0)
