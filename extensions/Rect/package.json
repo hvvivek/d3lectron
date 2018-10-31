@@ -1,0 +1,6 @@
+{
+    "name"      : "Rectangle",
+    "scripts"   : ["rect.js"],
+    "view"      : "view.html",
+    "style"     : "style.css"
+}

@@ -22,18 +22,33 @@ var installed_extensions = getDirectories(extensions_path)
 for(var i=0; i<installed_extensions.length; i++)
 {
     var extension = installed_extensions[i]
-    var extension_details = JSON.parse(fs.readFileSync(extensions_path + extension + "/package.json", 'utf8'));
-    extension_details.full_path = "." + extensions_path + extension + "/"
-    extension_details.class_path = "." + extensions_path + extension + "/" + extension_details.main
-    extension_details.functions_path = "." + extensions_path + extension + "/functions.js"
-    extensions[extension_details.name] = extension_details
+    var manifest = JSON.parse(fs.readFileSync(extensions_path + extension + "/package.json", 'utf8'));
 
-    console.log(extension_details.class_path)
-    $.loadScript(extension_details.class_path, function(){
-        console.log("Loaded Extension" + extension_details.name)
-    });
+    manifest.full_path = "." + extensions_path + extension + "/"
+    // manifest.class_path = "." + extensions_path + extension + "/" + manifest.main
+    // extension_details.functions_path = "." + extensions_path + extension + "/functions.js"
 
-    $.loadScript(extension_details.functions_path, function(){
-        console.log("Loaded Extension Functions" + extension_details.name)
-    });
+    for(var j=0; j<manifest.scripts.length; j++){
+        var script = manifest.scripts[j]
+        script = "." + extensions_path + extension + "/" + script
+        $.loadScript(script, function(){
+            console.log("Loading Extension " + manifest.name + " Script " + j + "/" + manifest.scripts.length)
+        });
+    }
+
+    
+    extensions[manifest.name] = {}
+    extensions[manifest.name].path = manifest.full_path
+    extensions[manifest.name].getView = function(path)
+    {
+        console.log(this)
+        var container = $("<div></div>")
+        var html = $("<div></div>")
+        container.append(html)
+        console.log(path+"/style.css")
+        container.append("<link rel='stylesheet' href='"+ path +"style.css'>")
+        html.load(path + "index.html")
+        // console.log(view[0].innerHTML)
+        return container
+    }
 }

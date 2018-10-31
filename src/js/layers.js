@@ -27,6 +27,16 @@ class Layer
         return this.identifier
     }
 
+    getWidth()
+    {
+        return $("#canvas").width()
+    }
+
+    getHeight()
+    {
+        return $("#canvas").height()
+    }
+
     
 
     addTemplate(id, object)
@@ -36,5 +46,14 @@ class Layer
             this.templates = {}
         }
         this.templates[id] = object
+    }
+
+    getTemplate(id)
+    {
+        if(!this.templates)
+        {
+            this.templates = {}
+        }
+        return this.templates[id]
     }
 }

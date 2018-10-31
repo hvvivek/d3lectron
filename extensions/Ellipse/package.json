@@ -1,0 +1,6 @@
+{
+    "name"      : "Ellipse",
+    "scripts"   : ["ellipse.js"],
+    "view"      : "view.html",
+    "style"     : "style.css"
+}

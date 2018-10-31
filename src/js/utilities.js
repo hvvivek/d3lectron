@@ -27,7 +27,9 @@ var isValidLength = function(value)
     return valid
 }
 
-var randomString = function(length, chars) {
+var alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+var randomString = function(length) {
+    var chars = alpha
     var result = '';
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;

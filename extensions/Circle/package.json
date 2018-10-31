@@ -1,0 +1,6 @@
+{
+    "name"      : "Circle",
+    "scripts"   : ["circle.js"],
+    "view"      : "view.html",
+    "style"     : "style.css"
+}

@@ -48,7 +48,7 @@ var onLayerSelect = function()
 
 var getActiveLayer = function()
 {
-    return $("#create-layers .layers>ul>li.active")[0]
+    return workspace.layers[$("#create-layers .layers>ul>li.active").attr("data-layer-id")]
 }
 
 var populateExtensions = function()
@@ -64,7 +64,7 @@ var populateExtensions = function()
     $("#Extensions select").on("change", function()
     {
         var extension = extensions[$("#Extensions select").val()]
-        window[extension.functions].getView(extension.full_path)
-        // $("#ExtensionView").append(window[extension.functions].getView(extension.full_path))
+        // window[extension.functions].getView(extension.full_path)
+        $("#ExtensionView").append(extension.getView(extension.path))
     })
 }
