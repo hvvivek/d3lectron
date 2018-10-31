@@ -1,4 +1,4 @@
-#config
+.rect.config
 {
     width: 80%;
     margin-left: 10%;
@@ -6,7 +6,7 @@
     margin-top: 1.5em;
 }
 
-#config input
+.rect.config input
 {
     background-color: #333333;
     /* height: 1.5em; */
@@ -20,13 +20,13 @@
     color: white;
 }
 
-#config input:hover
+.rect.config input:hover
 {
     background-color: #444444;
     border: 1px solid #888888;
 }
 
-#config .build
+.rect.config .build
 {
     background-color: #2177bd;
     color: white;
@@ -41,7 +41,7 @@
     /* font-family: 'Helvetica Bold' */
 }
 
-#config p
+.rect.config p
 {
     color: #aaaaaa;
     font-family: 'Helvetica';

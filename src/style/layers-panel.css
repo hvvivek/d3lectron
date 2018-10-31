@@ -76,7 +76,7 @@
     color: white;
 }
 
-#Extensions
+.extensions
 {
     background-color: #333333;
     width: 80%;
@@ -86,7 +86,7 @@
     border-radius: 5px;
 }
 
-#Extensions:hover
+.extensions:hover
 {
     background-color: #444444;
     border: 1px solid #888888;
@@ -94,7 +94,7 @@
 }
 
 
-#Extensions select
+.extensions select
 {
     background-color: transparent;
     color: white;
@@ -114,9 +114,16 @@
   background-position-y: 0px;
 }
 
-#Extensions select:focus
+.extensions select:focus
 {
     outline: none;
+}
+
+#templates
+{
+    overflow-y: scroll;
+    max-height: 90vh;
+    padding-bottom: 2em;
 }
 
 #LayerView p.panel-title
@@ -128,6 +135,29 @@
     margin-top: 1em;
     margin-bottom: 0.35em;
 
+}
+
+#LayerView>hr
+{
+    width: 80%;
+    margin-left: 10%;
+}
+#LayerView .add-template-btn
+{
+    background-color: #222222;
+    color: white;
+    float: right;
+    border: #444444;
+    margin-right: 10%;
+}
+
+#LayerView .add-template-btn:hover
+{
+    background-color: #444444;
+    /* color: white;
+    float: right; */
+    border: #666666;
+    /* margin-right: 10%; */
 }
 
 #create-layers .layers>ul>li>img

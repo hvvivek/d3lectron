@@ -8,10 +8,10 @@ class Rect
     static build(config_container)
     {
         var config = {}
-        config.width = $(config_container + " input[name=width]").val()
-        config.height = $(config_container + " input[name=height]").val()
-        config.x = $(config_container + " input[name=x]").val()
-        config.y = $(config_container + " input[name=y]").val()
+        config.width = $(config_container).find("input[name=width]").val()
+        config.height = $(config_container).find("input[name=height]").val()
+        config.x = $(config_container).find("input[name=x]").val()
+        config.y = $(config_container).find("input[name=y]").val()
         config.parent = getActiveLayer()
         var id = randomString(5)
         config.id = id

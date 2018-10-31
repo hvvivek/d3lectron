@@ -17,7 +17,10 @@ var updateLayersPanel = function()
         $("#create-layers .layers>ul").html("")
         for(var layer in workspace.layers)
         {
-            $("#create-layers .layers>ul").append("<li data-layer-id="+ layer.replace(/ /g,'') +"><img src='./assets/eyecon.png'>" + layer + "</li>")
+            console.log(workspace.layers[layer])
+            var class_name = workspace.layers[layer].visibility?"":"hidden"
+            console.log(class_name)
+            $("#create-layers .layers>ul").append("<li data-layer-id="+ layer.replace(/ /g,'') +"><img class='"+class_name+"' src='./assets/eyecon.png'>" + layer + "</li>")
         }
         $("#create-layers .layers>ul>li").on("click", onLayerSelect)
         $("#create-layers .layers>ul>li:last").click()
@@ -32,7 +35,15 @@ var updateLayersPanel = function()
 var hideLayer = function(listItem)
 {
     var layer_id = $(listItem.parentNode).attr("data-layer-id")
+
     $(listItem).toggleClass("hidden")
+    if($(listItem).hasClass("hidden")){
+        workspace.layers[layer_id].setVisible(false)
+    }
+    else
+    {
+        workspace.layers[layer_id].setVisible(true)
+    }
     $("#" + workspace.layers[layer_id].getSVGGroup()).toggleClass("hidden")
 }
 
@@ -43,7 +54,16 @@ var onLayerSelect = function()
     // console.log(workspace.layers[$(this).attr("data-layer-id")])
     $("#right-sidebar").html("")
     workspace.layers[$(this).attr("data-layer-id")].getView().appendTo($("#right-sidebar"))
-    populateExtensions()
+    // populateExtensions()
+    $("#templates select").on("change", function()
+    {
+        console.log(this)
+        var extension = extensions[$(this).val()]
+        console.log(this.parentNode)
+        // window[extension.functions].getView(extension.full_path)
+        $(this.parentNode.parentNode).find(".extension-view").html("")
+        $(this.parentNode.parentNode).find(".extension-view").append(extension.getView(extension.path))
+    })
 }
 
 var getActiveLayer = function()
@@ -53,18 +73,21 @@ var getActiveLayer = function()
 
 var populateExtensions = function()
 {
-    $("#Extensions select").html("")
-    $("#Extensions select").append("<option>Custom</option>")
+    $(".extensions select").html("")
+    $(".extensions select").append("<option>Custom</option>")
 
     for(var extension in extensions)
     {
-        $("#Extensions select").append("<option>" + extension + "</option>")
+        $(".extensions select").append("<option>" + extension + "</option>")
     }
     
-    $("#Extensions select").on("change", function()
+    $(".extensions select").on("change", function()
     {
-        var extension = extensions[$("#Extensions select").val()]
+        console.log(this)
+        var extension = extensions[$(".extensions select").val()]
         // window[extension.functions].getView(extension.full_path)
-        $("#ExtensionView").append(extension.getView(extension.path))
+        console.log(this.parentNode)
+        console.log($(this.parentNode).find(".extension-view").get())
+        $(this.parentNode).find(".extension-view").append(extension.getView(extension.path))
     })
 }

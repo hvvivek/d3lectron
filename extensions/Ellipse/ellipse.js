@@ -2,16 +2,18 @@ class Ellipse
 {
     constructor(config)
     {
+        console.log(config)
         this.setConfig(config)
     }
 
     static build(config_container)
     {
+        console.log(config_container)
         var config = {}
-        config.rx = $(config_container + " input[name=rx]").val()
-        config.ry = $(config_container + " input[name=ry]").val()
-        config.cx = $(config_container + " input[name=cx]").val()
-        config.cy = $(config_container + " input[name=cy]").val()
+        config.rx = $(config_container).find("input[name=rx]").val()
+        config.ry = $(config_container).find("input[name=ry]").val()
+        config.cx = $(config_container).find("input[name=cx]").val()
+        config.cy = $(config_container).find("input[name=cy]").val()
         config.parent = getActiveLayer()
         var id = randomString(5)
         config.id = id

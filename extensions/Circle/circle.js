@@ -8,9 +8,9 @@ class Circle
     static build(config_container)
     {
         var config = {}
-        config.r = $(config_container + " input[name=r]").val()
-        config.cx = $(config_container + " input[name=cx]").val()
-        config.cy = $(config_container + " input[name=cy]").val()
+        config.r = $(config_container).find("input[name=r]").val()
+        config.cx = $(config_container).find("input[name=cx]").val()
+        config.cy = $(config_container).find("input[name=cy]").val()
         config.parent = getActiveLayer()
         var id = randomString(5)
         config.id = id
