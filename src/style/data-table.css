@@ -1,0 +1,40 @@
+#data-table
+{
+    margin-left: 5%;
+    margin-top: 3em;
+    width: 90%;
+    overflow: scroll;
+    height: 90vh;
+}
+
+#data-table table
+{
+    color: white;
+    font-family: 'Helvetica Bold';
+    padding-left: 1em;
+}
+
+#data-table th
+{
+    padding: 1em;
+}
+
+#data-table tr
+{
+    border-bottom: 1px solid #222;   
+}
+
+#data-table td
+{
+    padding: 1em;
+    
+}
+
+#data-table h2
+{
+    font-family: 'Helvetica Bold';
+    color: white;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    font-size: 3.5em;
+}

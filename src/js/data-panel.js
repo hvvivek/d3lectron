@@ -186,8 +186,46 @@ var updateDataPanel = function()
             console.log(key)
             
             $("#create-data .data-sources>ul").append("<li>" + key + "</li>")
+            $("#create-data .data-sources>ul>li").click(
+                function()
+                {
+                    console.log(this.innerHTML)
+                    $("#content").html(getDataTable(this.innerHTML))
+                }
+            )
+
         }
     }
+}
+
+var getDataTable = function(key)
+{
+    var dataSource = workspace.data_sources[key]
+    var table = $("<table></table>")
+    // table.attr("id", "data-table")
+    var table_header = $('<tr></tr>')
+    for(var i=0; i<dataSource.features.length; i++)
+    {
+        table_header.append('<th>'+ dataSource.features[i] +'</th>')
+    }
+    table.append(table_header)
+
+    var num_rows = dataSource.data.length>1000? 1000:dataSource.data.length
+    for(var i=0; i<num_rows; i++)
+    {
+        var table_row = $('<tr></tr>')
+        for(var j=0; j<dataSource.features.length; j++)
+        {
+            table_row.append('<td>'+ dataSource.data[i][dataSource.features[j]] +'</td>')
+        }
+        table.append(table_row)
+    }
+
+    var outer_wrapper = $("<div></div>")
+    outer_wrapper.attr("id", "data-table")
+    outer_wrapper.append("<h2>" + key + "</h2>")
+    outer_wrapper.append(table)
+    return outer_wrapper
 }
 
 
