@@ -235,3 +235,8 @@
     visibility: hidden;
     margin-bottom: 0.5em;
 }
+
+#create-data .data-sources>ul>li
+{
+    cursor: pointer;
+}

@@ -17,11 +17,30 @@
 #data-table th
 {
     padding: 1em;
+    color: #888;
+    /* font-size: 1em; */
 }
 
 #data-table tr
 {
     border-bottom: 1px solid #222;   
+}
+
+
+#data-table tr>.edit
+{
+    opacity: 0;   
+}
+
+#data-table tr:hover>.edit
+{
+    opacity: 1;   
+}
+
+#data-table tr:hover
+{
+    background-color: #222;
+    /* border-bottom: 1px solid #222;    */
 }
 
 #data-table td

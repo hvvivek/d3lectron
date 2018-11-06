@@ -204,6 +204,7 @@ var getDataTable = function(key)
     var table = $("<table></table>")
     // table.attr("id", "data-table")
     var table_header = $('<tr></tr>')
+    table_header.append("<th></th>")
     for(var i=0; i<dataSource.features.length; i++)
     {
         table_header.append('<th>'+ dataSource.features[i] +'</th>')
@@ -214,6 +215,7 @@ var getDataTable = function(key)
     for(var i=0; i<num_rows; i++)
     {
         var table_row = $('<tr></tr>')
+        table_row.append("<td class='edit'>Edit</td>")
         for(var j=0; j<dataSource.features.length; j++)
         {
             table_row.append('<td>'+ dataSource.data[i][dataSource.features[j]] +'</td>')
