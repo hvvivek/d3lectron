@@ -47,3 +47,26 @@
     font-family: 'Helvetica';
     margin-bottom:0.1em;
 }
+
+
+.optional
+{
+    color: #aaaaaa;
+}
+
+.optional td
+{
+    vertical-align: middle;
+    width: 50%;
+}
+
+.ellipse.config .optional input
+{
+    margin: 0px;
+    border-radius: 0px;
+}
+
+.optional .col-6
+{
+    padding: 0px;
+}

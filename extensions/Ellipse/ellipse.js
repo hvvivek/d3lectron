@@ -14,6 +14,14 @@ class Ellipse
         config.ry = $(config_container).find("input[name=ry]").val()
         config.cx = $(config_container).find("input[name=cx]").val()
         config.cy = $(config_container).find("input[name=cy]").val()
+        config.optionalSettings = []
+        var optional_inputs = $(config_container).find(".optional input")
+        for(var i=0; i<optional_inputs.length; i++)
+        {
+            var prop = $(optional_inputs[i])
+            console.log(prop)
+            config.optionalSettings.push({key: prop.attr("name"), value: prop.val()})
+        }
         config.parent = getActiveLayer()
         var id = randomString(5)
         config.id = id
@@ -33,8 +41,17 @@ class Ellipse
 
     compile()
     {
-        var plot = d3.select("#" + this.parent.getSVGGroup())
+        var canvas = d3.select("#" + this.parent.getSVGGroup())
 
+        if(!this.canvas_group)
+        {
+            var random_string = randomString(20)
+            canvas.append("g").attr("class", random_string)
+            this.canvas_group = random_string
+
+        }
+        
+        canvas = canvas.select("." + this.canvas_group)
         // var xFeature = this.xFeature
         // var yFeature = this.yFeature
 
@@ -46,8 +63,6 @@ class Ellipse
         // this.yScale = d3.scaleLinear()
         //                 .domain(getDomain(yFeature))
         //                 .range([this.height - this.bottom, this.top])
-
-        var canvas = plot
                 
         // console.log(canvas)
         canvas
@@ -71,6 +86,18 @@ class Ellipse
         // canvas
         //     .exit()
         //     .remove()
+        if(this.config.optionalSettings)
+        {
+            for(var j=0; j<this.config.optionalSettings.length; j++)
+            {
+                var attr = this.config.optionalSettings[j].key
+                var value =  this.config.optionalSettings[j].value
+                console.log(attr + " " + value)
+                canvas
+                    .selectAll("ellipse")
+                    .attr(attr, value)
+            }
+        }
     }
 
     getRxFunction()

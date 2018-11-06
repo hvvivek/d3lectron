@@ -1,5 +1,5 @@
 <div class="rect config">
-    
+    <button onclick="">X</button>
     <div class="row">
         <p class="col-12">Top-Left Corner</p>
         <div class="col-6">
@@ -30,6 +30,21 @@
         </div>
     </div>
 
-    
+    <hr>
+    <table class="optional">
+        <tr class="col-12">
+            <td class="col-6"><p>Fill</p></td>
+            <td class="col-6"><input type="text" name="fill" id="" placeholder="black"></td>
+        </tr>
+        <tr class="col-12">
+            <td class="col-6">Stroke Color</td>
+            <td class="col-6"><input type="text" name="stroke" id="" placeholder="black"></td>
+        </tr>
+        <tr class="col-12">
+            <td class="col-6">Stroke Width</td>
+            <td class="col-6"><input type="text" name="stroke-width" id="" placeholder="1px"></td>
+        </tr>
+    </table>
+
     <button class="build" onclick="Rect.build(this.parentNode)">Build</button>
 </div>

@@ -12,6 +12,14 @@ class Rect
         config.height = $(config_container).find("input[name=height]").val()
         config.x = $(config_container).find("input[name=x]").val()
         config.y = $(config_container).find("input[name=y]").val()
+        config.optionalSettings = []
+        var optional_inputs = $(config_container).find(".optional input")
+        for(var i=0; i<optional_inputs.length; i++)
+        {
+            var prop = $(optional_inputs[i])
+            console.log(prop)
+            config.optionalSettings.push({key: prop.attr("name"), value: prop.val()})
+        }
         config.parent = getActiveLayer()
         var id = randomString(5)
         config.id = id
@@ -31,21 +39,17 @@ class Rect
 
     compile()
     {
-        var plot = d3.select("#" + this.parent.getSVGGroup())
+        var canvas = d3.select("#" + this.parent.getSVGGroup())
 
-        // var xFeature = this.xFeature
-        // var yFeature = this.yFeature
+        if(!this.canvas_group)
+        {
+            var random_string = randomString(20)
+            canvas.append("g").attr("class", random_string)
+            this.canvas_group = random_string
 
-       
-        // this.xScale = d3.scaleLinear()
-        //                 .domain(getDomain(xFeature))
-        //                 .range([this.left, this.width - this.right])
-
-        // this.yScale = d3.scaleLinear()
-        //                 .domain(getDomain(yFeature))
-        //                 .range([this.height - this.bottom, this.top])
-
-        var canvas = plot
+        }
+        
+        canvas = canvas.select("." + this.canvas_group)
                 
         // console.log(canvas)
         canvas
@@ -69,6 +73,18 @@ class Rect
         // canvas
         //     .exit()
         //     .remove()
+        if(this.config.optionalSettings)
+        {
+            for(var j=0; j<this.config.optionalSettings.length; j++)
+            {
+                var attr = this.config.optionalSettings[j].key
+                var value =  this.config.optionalSettings[j].value
+                console.log(attr + " " + value)
+                canvas
+                    .selectAll("rect")
+                    .attr(attr, value)
+            }
+        }
     }
 
     getWidthFunction()
