@@ -69,3 +69,70 @@
 {
     padding: 0px;
 }
+
+.connect_data
+{
+    margin-bottom: 1em;
+}
+
+.connect_data table
+{
+    width: 100%;
+}
+.circle.config .connect_data input
+{
+    width: auto;
+    margin-right: 1em;
+}
+
+.connect_data td
+{
+    /* float: left; */
+    /* margin-left: 1em;         */
+    color: #aaa;
+}
+
+.data_source_input
+{
+    display: none;
+    width: 100%;
+}
+
+.circle.config .data_source_input input
+{
+    width: 100%;
+}
+
+.show
+{
+    display: block;
+}
+
+#hidden-search-help
+{
+    /* display: none; */
+    /* position: absolute; */
+    min-height: 10px;
+    background-color: white;
+    width: 15em;
+    /* z-index: 2; */
+    position: fixed;
+    z-index: 2;
+    max-width: 15em;;
+}
+
+#hidden-search-help ul
+{
+    background-color: white;
+    padding: 0px; 
+    /* position: absolute;
+    min-width: 10em; */
+    /* width: 100%; */
+    /* z-index: 2; */
+}
+
+#hidden-search-help li
+{
+    cursor: pointer;
+    padding: 0.3em 1em;
+}

@@ -4,4 +4,25 @@
     height: auto;
     margin-left: 25%;
     margin-top: 25%;
+
+}
+
+#content
+{
+    padding-left: 2em;
+    padding-right: 2em;
+    
+}
+
+#content svg
+{
+    position: relative;
+    -webkit-transform-origin: 50 50;
+    margin-right: 25%;
+}
+
+  
+#content
+{
+    overflow: scroll;
 }
