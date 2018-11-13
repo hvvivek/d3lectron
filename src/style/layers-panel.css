@@ -61,12 +61,55 @@
     border-bottom: 1px solid rgb(48, 48, 48);
 }
 
-#create-layers .layers>ul>li:hover
+#create-layers .layers ul>li.layer-name:hover
 {
     background-color: rgba(0, 119, 255, 0.1);
     /* list-style: none;
     padding: 5px 1em 5px 1em; */
     color: white;
+    
+}
+
+#create-layers .layers li.templates li:hover
+{
+    background-color: rgba(0, 119, 255, 0.1);
+    /* list-style: none;
+    padding: 5px 1em 5px 1em; */
+    color: white;
+    
+}
+
+#create-layers .layers li.templates
+{
+    /* width: 100%; */
+    padding: 0px;    
+}
+
+#create-layers .layers li.templates ul
+{
+    width: 100%;
+    padding: 0px;
+    
+}
+
+
+#create-layers .layers li.templates li
+{
+    border-bottom: 1px solid rgb(59, 59, 59);
+}
+
+#create-layers .layers li.templates ul p
+{
+    
+    padding-left: 5em;
+    
+}
+
+#create-layers .layers li.templates .icon-container
+{
+    
+    border-right: 1px solid rgb(59, 59, 59);
+    border-left: none;
     
 }
 
@@ -78,22 +121,55 @@
     color: white;
 }
 
+/* #create-layers .layers>ul>li.active .caret
+{
+    transform: rotate(90deg)
+} */
+
 .extensions
 {
-    background-color: #333333;
+    /* background-color: #333333; */
     width: 80%;
     margin-left: 10%;
     /* margin-top: 0.5em; */
-    height: 3em;
-    border-radius: 5px;
+    /* height: 3em; */
+    /* border-radius: 5px; */
 }
 
-.extensions:hover
+.extensions button
+{
+    height: 2.5em;
+    width: 2.5em;
+    border: 1px solid #777777;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 0.2em;
+    padding: 0px;
+    display: flex;
+    text-align: center;
+    float: left;
+}
+
+.extensions button:hover
+{
+    background-color: #444444;
+}
+
+.extensions button>img
+{
+    height: auto;
+    width: 60%;
+    margin: auto;
+    /* margin-left: 10%; */
+    
+}
+
+/* .extensions:hover
 {
     background-color: #444444;
     border: 1px solid #888888;
 
-}
+} */
 
 
 .extensions select
@@ -240,7 +316,7 @@
     float: left;
     width: 2em;
     height: 2em;
-    border-left: 1px solid rgb(59, 59, 59);
+    border-right: 1px solid rgb(59, 59, 59);
     position: relative;
     text-align: center;
     padding-top: 4px;
@@ -253,4 +329,9 @@
 {
     display: flex;
     border-left: 4px solid red;
+}
+
+.expanded.caret
+{
+    transform: rotate(90deg)
 }

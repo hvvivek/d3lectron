@@ -4,7 +4,7 @@ $("#create-layers .add-btn").on("click", function(){
     {
         workspace.layers = {}
     }
-
+    $("#create-layers .caret.expanded").toggleClass("expanded", false)
     workspace.layers["Layer" + (d3.keys(workspace.layers).length + 1)] = new Layer("Layer " + (d3.keys(workspace.layers).length + 1))
     updateLayersPanel()
 
@@ -26,6 +26,11 @@ var updateLayersPanel = function()
         $("#create-layers .layers>ul>li:last").click()
         $("#create-layers .layers>ul>li>div>img.eye").on("click", function(e){
             hideLayer(this)
+            e.stopPropagation()
+        })
+
+        $("#create-layers .layers>ul>li>div>img.caret").on("click", function(e){
+            showTemplates(this)
             e.stopPropagation()
         })
 
@@ -67,6 +72,22 @@ var lockLayer = function(listItem)
     // $("#" + workspace.layers[layer_id].getSVGGroup()).toggleClass("hidden")
 }
 
+var showTemplates = function(listItem)
+{
+    console.log(listItem)
+    var layer_id = $(listItem.parentNode.parentNode).attr("data-layer-id")
+
+    $(listItem).toggleClass("expanded")
+    if($(listItem).hasClass("expanded")){
+        workspace.layers[layer_id].showTemplates()
+    }
+    else
+    {
+        workspace.layers[layer_id].hideTemplates()
+    }
+    // $("#" + workspace.layers[layer_id].getSVGGroup()).toggleClass("hidden")
+}
+
 var onLayerSelect = function()
 {
     $("#create-layers .layers>ul>li").removeClass("active")
@@ -74,6 +95,8 @@ var onLayerSelect = function()
     // console.log(workspace.layers[$(this).attr("data-layer-id")])
     $("#right-sidebar").html("")
     workspace.layers[$(this).attr("data-layer-id")].getView().appendTo($("#right-sidebar"))
+
+    // workspace.layers[$(this).attr("data-layer-id")].showTemplates()
     // populateExtensions()
     $("#templates select").on("change", function()
     {

@@ -24,15 +24,16 @@ class Circle
         for(var i=0; i<optional_inputs.length; i++)
         {
             var prop = $(optional_inputs[i])
-            console.log(prop)
+            // console.log(prop)
             config.optionalSettings.push({key: prop.attr("name"), value: prop.val()})
         }
         config.parent = getActiveLayer()
-        var id = randomString(5)
-        config.id = id
-        config.parent.addTemplate(id, new Circle(config))
-        config.parent.getTemplate(id).compile()
 
+        // var id = randomString(5)
+        // config.id = $(config_container).find("input[name=id]").val()
+        config.canvas = getActiveLayer().getTemplate(workspace.activeTemplateId).getSVGGroup()
+
+        config.parent.getTemplate(workspace.activeTemplateId).compile(new Circle(config))
     }
 
     setConfig(config)
@@ -42,15 +43,16 @@ class Circle
         this.cx = config.cx
         this.cy = config.cy
         this.parent = config.parent
-
+        this.canvas = config.canvas
         this.width = 1920
         this.height = 1080
     }
 
     compile()
     {
-        var canvas = d3.select("#" + this.parent.getSVGGroup())
-        console.log(this.parent.getSVGGroup())
+        var canvas = d3.select("#" + this.canvas)
+        console.log(this.canvas)
+        // console.log(this.parent.getSVGGroup())
         if(!this.canvas_group)
         {
             var random_string = randomString(20)
@@ -114,7 +116,7 @@ class Circle
             {
                 var attr = this.config.optionalSettings[j].key
                 var value =  this.config.optionalSettings[j].value
-                console.log(attr + " " + value)
+                // console.log(attr + " " + value)
                 canvas
                     .selectAll("circle")
                     .attr(attr, value)
@@ -124,7 +126,7 @@ class Circle
 
     getRadiusFunction()
     {
-        console.log(this.r)
+        // console.log(this.r)
         if(this.config.dataConnect && !isValidLength(this.config.r))
         {
             var feature = this.r

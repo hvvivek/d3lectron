@@ -2,5 +2,6 @@
     "name"      : "Ellipse",
     "scripts"   : ["ellipse.js"],
     "view"      : "view.html",
-    "style"     : "style.css"
+    "style"     : "style.css",
+    "icon"      : "icon.png"
 }

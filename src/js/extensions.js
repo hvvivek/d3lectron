@@ -23,7 +23,6 @@ for(var i=0; i<installed_extensions.length; i++)
 {
     var extension = installed_extensions[i]
     var manifest = JSON.parse(fs.readFileSync(extensions_path + extension + "/package.json", 'utf8'));
-
     manifest.full_path = "." + extensions_path + extension + "/"
     // manifest.class_path = "." + extensions_path + extension + "/" + manifest.main
     // extension_details.functions_path = "." + extensions_path + extension + "/functions.js"
@@ -38,6 +37,9 @@ for(var i=0; i<installed_extensions.length; i++)
 
     
     extensions[manifest.name] = {}
+    extensions[manifest.name].icon = manifest.full_path + manifest.icon
+    console.log(extensions[manifest.name].icon)
+
     extensions[manifest.name].path = manifest.full_path
     extensions[manifest.name].getView = function(path)
     {
@@ -46,7 +48,9 @@ for(var i=0; i<installed_extensions.length; i++)
         var html = $("<div></div>")
         container.append(html)
         container.append("<link rel='stylesheet' href='"+ path +"style.css'>")
-        html.load(path + "index.html")
+        html.load(path + "index.html", function()
+        {
+        })
         // console.log(view[0].innerHTML)
         return container
     }
