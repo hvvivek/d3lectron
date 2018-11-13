@@ -5,7 +5,7 @@ $("#create-layers .add-btn").on("click", function(){
         workspace.layers = {}
     }
 
-    workspace.layers["Layer" + (d3.keys(workspace.layers).length + 1)] = new Layer("Layer" + (d3.keys(workspace.layers).length + 1))
+    workspace.layers["Layer" + (d3.keys(workspace.layers).length + 1)] = new Layer("Layer " + (d3.keys(workspace.layers).length + 1))
     updateLayersPanel()
 
 })
@@ -20,12 +20,17 @@ var updateLayersPanel = function()
             console.log(workspace.layers[layer])
             var class_name = workspace.layers[layer].visibility?"":"hidden"
             console.log(class_name)
-            $("#create-layers .layers>ul").append("<li data-layer-id="+ layer.replace(/ /g,'') +"><img class='"+class_name+"' src='./assets/eyecon.png'>" + layer + "</li>")
+            $("#create-layers .layers>ul").append(workspace.layers[layer].getListView())
         }
         $("#create-layers .layers>ul>li").on("click", onLayerSelect)
         $("#create-layers .layers>ul>li:last").click()
-        $("#create-layers .layers>ul>li>img").on("click", function(e){
+        $("#create-layers .layers>ul>li>div>img.eye").on("click", function(e){
             hideLayer(this)
+            e.stopPropagation()
+        })
+
+        $("#create-layers .layers>ul>li>div>img.lock").on("click", function(e){
+            lockLayer(this)
             e.stopPropagation()
         })
     }
@@ -34,7 +39,7 @@ var updateLayersPanel = function()
 
 var hideLayer = function(listItem)
 {
-    var layer_id = $(listItem.parentNode).attr("data-layer-id")
+    var layer_id = $(listItem.parentNode.parentNode).attr("data-layer-id")
 
     $(listItem).toggleClass("hidden")
     if($(listItem).hasClass("hidden")){
@@ -45,6 +50,21 @@ var hideLayer = function(listItem)
         workspace.layers[layer_id].setVisible(true)
     }
     $("#" + workspace.layers[layer_id].getSVGGroup()).toggleClass("hidden")
+}
+
+var lockLayer = function(listItem)
+{
+    var layer_id = $(listItem.parentNode.parentNode).attr("data-layer-id")
+
+    $(listItem).toggleClass("hidden")
+    if($(listItem).hasClass("hidden")){
+        workspace.layers[layer_id].setLocked(false)
+    }
+    else
+    {
+        workspace.layers[layer_id].setLocked(true)
+    }
+    // $("#" + workspace.layers[layer_id].getSVGGroup()).toggleClass("hidden")
 }
 
 var onLayerSelect = function()

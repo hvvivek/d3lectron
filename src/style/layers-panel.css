@@ -54,14 +54,16 @@
 #create-layers .layers>ul>li
 {
     list-style: none;
-    padding: 5px 1em 5px 1em;
+    padding: 0px 1em 0px 0em;
     color: #aaaaaa;
     cursor: pointer;
+    display: flex; 
+    border-bottom: 1px solid rgb(48, 48, 48);
 }
 
 #create-layers .layers>ul>li:hover
 {
-    background-color: #333333;
+    background-color: rgba(0, 119, 255, 0.1);
     /* list-style: none;
     padding: 5px 1em 5px 1em; */
     color: white;
@@ -70,7 +72,7 @@
 
 #create-layers .layers>ul>li.active
 {
-    background-color: #333333;
+    background-color: rgba(0, 119, 255, 0.1);
     /* list-style: none;
     padding: 5px 1em 5px 1em; */
     color: white;
@@ -160,9 +162,95 @@
     /* margin-right: 10%; */
 }
 
-#create-layers .layers>ul>li>img
+#create-layers .layers>ul>li>img.eye
 {
-    height: 1.3em;
+    height: 1.5em;
     width: auto;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
+    float: left;
+    padding-top: 0.4em;
+}
+
+/* #create-layers .layers>ul>li>img.lock
+{
+    width: 0.7em;
+    padding-top: 0.6em;
+    height: auto;
+    margin-right: 0.5em;
+    float: left;
+    
+}
+
+#create-layers .layers>ul>li>img.caret
+{
+    width: 0.7em;
+    height: auto;
+    margin-right: 0.5em;
+    float: left;
+    padding-top: 4px;
+}
+
+#create-layers .layers>ul>li>.layer-ribbon
+{
+    width: 0.2em;
+    height: 100%;
+    background-color: red;
+    float: left;
+} */
+
+#create-layers .layers>ul>li>div>p
+{
+    /* height: 2.2em; */
+    /* border-left: 4px solid red; */
+    /* padding-left: 1em; */
+    font-size: 0.9em;
+    /* padding-top: 0.1em; */
+    /* margin: auto; */
+    margin-top: auto;
+    margin-bottom:auto;
+    padding-left: 1em;
+
+}
+
+.eye
+{
+    height: 1.2em;
+    width: auto;
+    /* padding-top: 6px; */
+}
+
+.lock
+{
+    height: 0.85em;
+    width: auto;  
+    /* padding-top: 6px; */
+
+}
+
+.caret
+{
+    height: 0.75em;
+    width: auto;
+    /* padding-top: 6px; */
+    margin-top: -2px;
+}
+
+.icon-container
+{
+    float: left;
+    width: 2em;
+    height: 2em;
+    border-left: 1px solid rgb(59, 59, 59);
+    position: relative;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 6px;
+
+
+}
+
+.layer-name-container
+{
+    display: flex;
+    border-left: 4px solid red;
 }
