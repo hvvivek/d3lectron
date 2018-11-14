@@ -33,7 +33,7 @@ class Circle
         // config.id = $(config_container).find("input[name=id]").val()
         config.canvas = getActiveLayer().getTemplate(workspace.activeTemplateId).getSVGGroup()
 
-        config.parent.getTemplate(workspace.activeTemplateId).compile(new Circle(config))
+        config.parent.getTemplate(workspace.activeTemplateId).compile(Circle, config)
     }
 
     setConfig(config)
@@ -51,6 +51,7 @@ class Circle
     compile()
     {
         var canvas = d3.select("#" + this.canvas)
+        
         console.log(this.canvas)
         // console.log(this.parent.getSVGGroup())
         if(!this.canvas_group)
@@ -89,14 +90,26 @@ class Circle
                             .domain(this.getDomain(yFeature))
                             .range([this.height, 0])
                             
-            canvas
+            var plot = canvas
                 .selectAll("circle")
                 .data(this.config.dataSource.data)
+
+            plot
                 .enter()
                     .append("circle")
                     .attr("r",      this.getRadiusFunction())
                     .attr("cx",     this.getCxFunction())
                     .attr("cy",     this.getCyFunction())
+            
+            plot
+                .attr("r",      this.getRadiusFunction())
+                .attr("cx",     this.getCxFunction())
+                .attr("cy",     this.getCyFunction())
+
+            plot.exit().transition()
+            .style("opacity", 0).remove()
+
+            
         }
         // canvas
         //     .attr("r",      this.getRadiusFunction())

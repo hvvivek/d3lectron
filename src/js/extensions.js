@@ -8,6 +8,7 @@ $.loadScript = function (url, callback) {
 }
 
 var extensions = {}
+var extension_classes = {}
 
 function getDirectories(path) {
     return fs.readdirSync(path).filter(function (file) {
@@ -18,7 +19,7 @@ function getDirectories(path) {
 var extensions_path = "./extensions/"
 var installed_extensions = getDirectories(extensions_path)
 // extensions.extensions = {}
-
+// extension_classes["classes"] = {}
 for(var i=0; i<installed_extensions.length; i++)
 {
     var extension = installed_extensions[i]

@@ -24,10 +24,19 @@ class Template
         return this.layerView
     }
 
-    compile(object)
+    compile(extension, config)
     {
-        this.object = object
-        object.compile()
+        if(!this.object || this.extension != extension)
+        {
+            this.object = new extension(config)
+            this.extension = extension
+            
+        }
+        else
+        {
+            this.object.setConfig(config)
+        }
+        this.object.compile()
     }
 
     getSVGGroup()

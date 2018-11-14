@@ -10,38 +10,27 @@ $("#icon-tabs li").on("click", function(){
         switch(this.getAttribute("panel-id"))
         {
             case "layers-panel":
-                if(!$("#canvas")[0])
+                if(!workspace.canvas)
                 {
                     $("#content").html("")
-                    $("#content").append("<svg id='canvas'></svg>")
+                    var svg = $("<svg id='canvas'></svg>")
+                    $("#content").append(svg)
                     d3.select("#canvas")
                         .attr("width", "960px")
                         .attr("height", "540px")
                         // .attr("viewbox", '-150 -150 150 150')
 
-                    var originalWidth = 960
-                    var originalHeight  = 540
+                    
                     // var scale = 1
-                    $('#canvas').bind('mousewheel', 
-                        function(event)
-                        {
-                            var modifier = event.originalEvent.deltaY/ Math.abs(event.originalEvent.deltaY)
-                            var new_scale = workspace.svgScale + (modifier/100)
-                        
-                            if(new_scale > 0.25 && new_scale < 2)
-                            {
-                                workspace.svgScale = new_scale
-                                var newWidth = originalWidth * workspace.svgScale
-                                var newHeight = originalHeight * workspace.svgScale
-                                console.log(newWidth)
-                                $("#canvas")
-                                    .attr("transform", "scale(" + workspace.svgScale + "," + workspace.svgScale + ")")
-                                    // .attr("height", newHeight)
-                                // console.log(event.originalEvent.deltaY)
-                            }
-                        }
-                    )
-                
+                    $(svg).bind('mousewheel', zoomFunction)
+                    workspace.canvas = svg
+                }
+                else
+                {
+                    $("#content").html("")
+                    $("#content").append(workspace.canvas)
+                    $(workspace.canvas).bind('mousewheel', zoomFunction)
+
                 }
                 if(!$("#create-layers .layers>ul>li")[0])$("#create-layers .add-btn").click()
 
@@ -65,4 +54,27 @@ $(".panel .dropdown-title").on("click", function()
     }
 })
 
+var zoomFunction = function(event)
+{
+    var originalWidth = 960
+    var originalHeight  = 540
+    console.log(event)
+    if(event.metaKey || event.ctrlKey)
+    {
+        var modifier = event.originalEvent.deltaY/ Math.abs(event.originalEvent.deltaY)
+        var new_scale = workspace.svgScale + (modifier/100)
+    
+        if(new_scale > 0.25 && new_scale < 2)
+        {
+            workspace.svgScale = new_scale
+            var newWidth = originalWidth * workspace.svgScale
+            var newHeight = originalHeight * workspace.svgScale
+            console.log(newWidth)
+            $("#canvas")
+                .attr("transform", "scale(" + workspace.svgScale + "," + workspace.svgScale + ")")
+                // .attr("height", newHeight)
+            // console.log(event.originalEvent.deltaY)
+        }
+    }
+}
 
