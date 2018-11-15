@@ -1,16 +1,30 @@
 <div class="ellipse config">
-    
+    <p class="full-width panel-title">ELLIPSE</p>
+
+    <div class="connect_data">
+        <table>
+            <tr>
+                <td><input type="checkbox" name="connect_data" id=""></td>
+                <td>Connect to data?</td>
+            </tr>
+        </table>
+            
+        <div class="data_source_input">
+            <input type="text" name="data" placeholder='Type name of data source' data-array-pointer="workspace:data_sources">
+        </div>
+    </div>
+
     <div class="row">
         <p class="col-12">Center</p>
         <div class="col-6">
             <div class="autocomplete">
-                <input type="text" name="cx" id="" placeholder="X coordinate">
+                <input type="text" name="cx" id="" placeholder="X coordinate" data-array-pointer="workspace:data_sources:$input[name=data]:features">
             </div>
         </div>
         
         <div class="col-6">
             <div class="autocomplete">
-                <input type="text" name="cy" id="" placeholder="Y coordinate">
+                <input type="text" name="cy" id="" placeholder="Y coordinate" data-array-pointer="workspace:data_sources:$input[name=data]:features">
             </div>
         </div>
     </div>
@@ -47,3 +61,111 @@
 
     <button class="build" onclick="Ellipse.build(this.parentNode)">Build</button>
 </div>
+
+    
+<script>
+    $(".connect_data input[type=checkbox]").click(function()
+    {
+        console.log(this.checked)
+        $(".data_source_input").toggleClass("show", this.checked)
+        if(this.checked)
+        {
+            $(".connect_data input[type=text]").on("keydown", onInputKeyDown)
+            $(".autocomplete input[type=text]").on("keydown", onInputKeyDown)
+        }
+        else
+        {
+            $(".connect_data input[type=text]").on("keydown", do_nothing)
+            $(".autocomplete input[type=text]").on("keydown", do_nothing)
+        }
+
+
+    })
+
+    var do_nothing = function()
+    {
+
+    }
+    var autocomplete_list = $("<div id='hidden-search-help'></div>")
+//Search Help Functions
+    var onInputKeyDown = function(e)
+    {
+        console.log(e)
+        if(e.key == "Backspace" && $(this).val() == "")
+        {
+            $("#hidden-search-help").remove()
+        }
+        else if($(this).attr("data-array-pointer"))
+        {
+            console.log(this.parentNode)
+            if($(this.parentNode).find("#hidden-search-help").get().length == 0)
+            {
+                if(autocomplete_list.parentNode)
+                {
+                    autocomplete_list.parentNode.removeChild(autocomplete_list)
+                }
+                autocomplete_list.html("<ul></ul>")
+                autocomplete_list.attr("data-value-fill", "input[name=" + $(this).attr("name") + "]")
+                autocomplete_list.appendTo(this.parentNode)
+            }
+            // $("#hidden-search-help").position("absolute")
+            // test = this
+            var search_pointer = $(this).attr("data-array-pointer")
+            console.log(search_pointer)
+            search_pointer = search_pointer.split(":")
+            console.log(search_pointer)
+            var search_suggestions = window
+            var no_error = true;
+            try {
+                for(var i=0; i<search_pointer.length; i++)
+                {
+                    if(search_pointer[i].indexOf("$")<0)
+                    {
+                        search_suggestions = search_suggestions[search_pointer[i]]
+                    }
+                    else
+                    {
+                        console.log($(search_pointer[i].slice(1)).val())
+                        search_suggestions = search_suggestions[$(search_pointer[i].slice(1)).val()]
+                    }
+                    console.log(search_suggestions)
+
+                }
+            } catch (error) {
+                no_error = false;
+            }
+            
+            
+            
+            // var data_array = workspace[$(this).attr("data-array")]
+            if(!Array.isArray(search_suggestions) && typeof(search_suggestions) == "object")
+            {
+                // typeof(search_suggestions)
+                search_suggestions = d3.keys(search_suggestions)
+            }
+
+            autocomplete_list.find("ul").html("")
+            // autocomplete_list.find("ul").style("position:absolute")
+            if(no_error && search_suggestions && search_suggestions.length>0)
+            {
+                for(var i=0; i<search_suggestions.length; i++)
+                {
+                    console.log(search_suggestions)
+                    autocomplete_list.find("ul").append("<li onClick='autocompleteFill(this)'>" + search_suggestions[i] + "</li>")
+                }
+            }
+            else
+            {
+                autocomplete_list.find("ul").append("<li><i>No relevant suggestions found</i></li>" )
+            }
+        }
+    }
+
+    var autocompleteFill = function(a)
+    {
+        $("#hidden-search-help").remove()
+        // autocomplete_list = $("<div id='hidden-search-help'></div>")
+        $($(a.parentNode.parentNode).attr("data-value-fill")).val($(a).html())
+    }
+
+</script>
