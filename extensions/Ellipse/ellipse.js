@@ -48,8 +48,8 @@ class Ellipse
         this.cy = config.cy
         this.parent = config.parent
         this.canvas = config.canvas
-        this.width = 1920
-        this.height = 1080
+        this.width = parseInt($("#canvas").attr("width"))
+        this.height = parseInt($("#canvas").attr("height"))
     }
 
     compile()
@@ -79,7 +79,6 @@ class Ellipse
         }
         else
         {
-            console.log("Here")
             var xFeature = this.config.cx
             var yFeature = this.config.cy
 

@@ -61,6 +61,7 @@ var populateDataPanel = function(workspace)
                     }
                 })
         $("#files-panel .dropdown-title").click()
+        $("#other-files").attr("style", "height:" + (window.innerHeight - $("#other-files").position().top) + "px")
     })
 }
 

@@ -45,10 +45,18 @@
     background-size: contain;
 }
 
+#create-layers .layers
+{
+    overflow: scroll;
+    height: 100%;
+}
+
 #create-layers .layers>ul
 {
     list-style: none;
-    padding: 0px
+    padding: 0px;
+    height: calc(100% - 2em);
+    overflow: scroll;
 }
 
 #create-layers .layers>ul>li

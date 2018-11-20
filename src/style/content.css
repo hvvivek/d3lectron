@@ -33,3 +33,8 @@
     margin-left: 10%;
     margin-top: 1.5em;
 }
+
+#other-files
+{
+    overflow: scroll;
+}
